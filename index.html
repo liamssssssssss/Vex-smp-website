@@ -1,0 +1,382 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEX SMP | Minecraft Survival</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08090d;
+      color: white;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 7%;
+      background: rgba(8, 9, 13, 0.9);
+      border-bottom: 1px solid #20222b;
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(56,189,248,0.15), transparent 35%),
+        radial-gradient(circle at 50% 80%, rgba(139,92,246,0.12), transparent 40%);
+    }
+
+    .hero h1 {
+      font-size: clamp(65px, 12vw, 150px);
+      font-weight: 1000;
+      letter-spacing: 8px;
+      line-height: 0.9;
+    }
+
+    .hero h1 span {
+      color: #38bdf8;
+    }
+
+    .hero p {
+      color: #a5a7b0;
+      max-width: 600px;
+      margin: 25px auto;
+      font-size: 18px;
+    }
+
+    .ip-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: #11131a;
+      border: 1px solid #2a2d38;
+      border-radius: 12px;
+      padding: 8px 8px 8px 18px;
+      margin-top: 10px;
+    }
+
+    .ip {
+      font-family: monospace;
+      color: #ddd;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-weight: bold;
+      color: white;
+      background: #2563eb;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.15);
+    }
+
+    section {
+      padding: 100px 7%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .section-text {
+      color: #92949d;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #101219;
+      border: 1px solid #22252f;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #92949d;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #6ee7b7;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #34d399;
+    }
+
+    .rules {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rule {
+      padding: 18px 20px;
+      background: #101219;
+      border: 1px solid #22252f;
+      border-radius: 12px;
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .rule span {
+      color: #92949d;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #20222b;
+      color: #686b75;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      nav .links {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .ip-box {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">VE<span>X</span> SMP</div>
+
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#play">Play</a>
+      <a href="#rules">Rules</a>
+      <a href="#wiki">Wiki</a>
+      <a href="#store">Store</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <div class="hero" id="home">
+      <div>
+        <div class="status">
+          <span class="dot"></span>
+          Server Online
+        </div>
+
+        <h1>VE<span>X</span></h1>
+
+        <p>
+          A modern Minecraft survival experience.
+          Build, fight, trade, explore, and make your mark on VEX SMP.
+        </p>
+
+        <div class="ip-box">
+          <span class="ip" id="serverIP">play.example.com</span>
+          <button onclick="copyIP()">Copy IP</button>
+        </div>
+      </div>
+    </div>
+
+    <section id="play">
+      <h2 class="section-title">Play VEX SMP</h2>
+      <p class="section-text">
+        Jump into the world and start your survival journey.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Java Edition</h3>
+          <p>Connect using the server IP through Minecraft Java Edition.</p>
+        </div>
+
+        <div class="card">
+          <h3>Bedrock Edition</h3>
+          <p>Bedrock support information and connection details will be listed here.</p>
+        </div>
+
+        <div class="card">
+          <h3>Version</h3>
+          <p>Paper 1.21.11</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules">
+      <h2 class="section-title">Server Rules</h2>
+      <p class="section-text">
+        Keep VEX SMP fun and fair for everyone.
+      </p>
+
+      <div class="rules">
+        <div class="rule">
+          <strong>Respect Players</strong>
+          <span>No harassment, discrimination, or unnecessary toxicity.</span>
+        </div>
+
+        <div class="rule">
+          <strong>No Cheating</strong>
+          <span>Hacked clients, unfair exploits, and prohibited modifications are not allowed.</span>
+        </div>
+
+        <div class="rule">
+          <strong>No Griefing</strong>
+          <span>Don't destroy or steal from other players without permission.</span>
+        </div>
+
+        <div class="rule">
+          <strong>Use Common Sense</strong>
+          <span>If something clearly ruins the experience for others, don't do it.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="wiki">
+      <h2 class="section-title">VEX Wiki</h2>
+      <p class="section-text">
+        Everything you need to know about the server.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Getting Started</h3>
+          <p>Learn how to join, survive, build your base, and get established.</p>
+        </div>
+
+        <div class="card">
+          <h3>Commands</h3>
+          <p>Useful commands and server features.</p>
+        </div>
+
+        <div class="card">
+          <h3>Economy</h3>
+          <p>Learn how trading, shops, money, and the server economy work.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="store">
+      <h2 class="section-title">Store</h2>
+      <p class="section-text">
+        Support VEX SMP and unlock optional perks.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Ranks</h3>
+          <p>View available server ranks and perks.</p>
+        </div>
+
+        <div class="card">
+          <h3>Crates</h3>
+          <p>Browse available crate keys and rewards.</p>
+        </div>
+
+        <div class="card">
+          <h3>Coming Soon</h3>
+          <p>The VEX SMP store is currently being prepared.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 VEX SMP. Not affiliated with Mojang or Microsoft.
+  </footer>
+
+  <script>
+    function copyIP() {
+      const ip = document.getElementById("serverIP").textContent;
+
+      navigator.clipboard.writeText(ip).then(() => {
+        alert("Server IP copied!");
+      });
+    }
+  </script>
+
+</body>
+</html>
+```
