@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VEX SMP | Minecraft Survival</title>
+
+  <title>VEX SMP | Pure Survival</title>
 
   <style>
     * {
@@ -20,62 +21,122 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: #08090d;
-      color: white;
+      color: #ffffff;
       line-height: 1.6;
     }
+
+    /* NAVIGATION */
 
     nav {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      z-index: 100;
-      padding: 18px 7%;
-      background: rgba(8, 9, 13, 0.9);
-      border-bottom: 1px solid #20222b;
-      backdrop-filter: blur(12px);
+      z-index: 1000;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      padding: 18px 7%;
+
+      background: rgba(8, 9, 13, 0.88);
+      border-bottom: 1px solid #20232c;
+
+      backdrop-filter: blur(14px);
     }
 
     .logo {
       font-size: 24px;
       font-weight: 900;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
     }
 
     .logo span {
       color: #38bdf8;
     }
 
-    nav a {
-      color: #aaa;
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #999da8;
       text-decoration: none;
-      margin-left: 25px;
       font-size: 14px;
       transition: 0.2s;
     }
 
-    nav a:hover {
-      color: white;
+    .nav-links a:hover {
+      color: #ffffff;
     }
+
+    /* HERO */
 
     .hero {
       min-height: 100vh;
+
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+
       text-align: center;
+
       padding: 120px 20px 80px;
+
       background:
-        radial-gradient(circle at 50% 35%, rgba(56,189,248,0.15), transparent 35%),
-        radial-gradient(circle at 50% 80%, rgba(139,92,246,0.12), transparent 40%);
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(56, 189, 248, 0.14),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 50% 80%,
+          rgba(139, 92, 246, 0.12),
+          transparent 40%
+        );
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .server-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 7px 13px;
+
+      border: 1px solid #26303b;
+      border-radius: 999px;
+
+      background: rgba(15, 18, 24, 0.8);
+
+      color: #75e0b0;
+
+      font-size: 13px;
+
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: #34d399;
+
+      border-radius: 50%;
     }
 
     .hero h1 {
-      font-size: clamp(65px, 12vw, 150px);
+      font-size: clamp(70px, 13vw, 150px);
+
       font-weight: 1000;
-      letter-spacing: 8px;
+
+      letter-spacing: 10px;
+
       line-height: 0.9;
     }
 
@@ -83,131 +144,296 @@
       color: #38bdf8;
     }
 
-    .hero p {
-      color: #a5a7b0;
-      max-width: 600px;
-      margin: 25px auto;
-      font-size: 18px;
+    .hero h2 {
+      margin-top: 18px;
+
+      color: #d7d9df;
+
+      font-size: clamp(18px, 3vw, 26px);
+
+      font-weight: 500;
     }
 
-    .ip-box {
+    .hero p {
+      max-width: 650px;
+
+      margin: 20px auto 32px;
+
+      color: #9296a2;
+
+      font-size: 17px;
+    }
+
+    /* IP BOX */
+
+    .ip-container {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      background: #11131a;
-      border: 1px solid #2a2d38;
+
+      gap: 12px;
+
+      padding: 7px 7px 7px 17px;
+
+      background: #11141b;
+
+      border: 1px solid #292d38;
+
       border-radius: 12px;
-      padding: 8px 8px 8px 18px;
-      margin-top: 10px;
     }
 
     .ip {
       font-family: monospace;
-      color: #ddd;
+
+      font-size: 15px;
+
+      color: #d8dbe2;
     }
 
-    button {
+    .copy-button {
       border: none;
-      cursor: pointer;
+
+      padding: 11px 17px;
+
       border-radius: 8px;
-      padding: 12px 18px;
-      font-weight: bold;
-      color: white;
+
       background: #2563eb;
+
+      color: white;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
       transition: 0.2s;
     }
 
-    button:hover {
+    .copy-button:hover {
       transform: translateY(-2px);
       filter: brightness(1.15);
     }
 
+    /* SECTIONS */
+
     section {
-      padding: 100px 7%;
       max-width: 1200px;
+
       margin: auto;
+
+      padding: 100px 7%;
+    }
+
+    .section-label {
+      color: #38bdf8;
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      margin-bottom: 8px;
     }
 
     .section-title {
-      font-size: 36px;
+      font-size: 38px;
+
       margin-bottom: 12px;
     }
 
-    .section-text {
-      color: #92949d;
+    .section-description {
+      color: #9296a2;
+
+      max-width: 650px;
+
       margin-bottom: 35px;
     }
 
+    /* CARDS */
+
     .cards {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 18px;
     }
 
     .card {
-      background: #101219;
-      border: 1px solid #22252f;
-      border-radius: 16px;
       padding: 28px;
+
+      background: #10131a;
+
+      border: 1px solid #222630;
+
+      border-radius: 16px;
+
+      transition: 0.2s;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
+    .card:hover {
+      transform: translateY(-4px);
+
+      border-color: #303746;
     }
 
-    .card p {
-      color: #92949d;
-      font-size: 14px;
-    }
+    .card-icon {
+      font-size: 28px;
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #6ee7b7;
-      font-size: 14px;
       margin-bottom: 15px;
     }
 
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #34d399;
+    .card h3 {
+      margin-bottom: 9px;
     }
+
+    .card p {
+      color: #9296a2;
+
+      font-size: 14px;
+    }
+
+    /* HOW TO PLAY */
+
+    .steps {
+      display: grid;
+
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+
+      gap: 18px;
+
+      align-items: center;
+
+      padding: 20px;
+
+      background: #10131a;
+
+      border: 1px solid #222630;
+
+      border-radius: 14px;
+    }
+
+    .step-number {
+      min-width: 38px;
+
+      height: 38px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 10px;
+
+      background: #17202c;
+
+      color: #38bdf8;
+
+      font-weight: bold;
+    }
+
+    .step p {
+      color: #9296a2;
+
+      font-size: 14px;
+    }
+
+    /* RULES */
 
     .rules {
       display: grid;
+
       gap: 12px;
     }
 
     .rule {
-      padding: 18px 20px;
-      background: #101219;
-      border: 1px solid #22252f;
-      border-radius: 12px;
+      padding: 19px 22px;
+
+      background: #10131a;
+
+      border: 1px solid #222630;
+
+      border-radius: 13px;
     }
 
     .rule strong {
       display: block;
+
       margin-bottom: 3px;
     }
 
     .rule span {
-      color: #92949d;
+      color: #9296a2;
+
       font-size: 14px;
     }
 
+    /* SERVER INFO */
+
+    .server-box {
+      padding: 35px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.08),
+          rgba(139, 92, 246, 0.06)
+        );
+
+      border: 1px solid #29303c;
+
+      border-radius: 18px;
+
+      text-align: center;
+    }
+
+    .server-box h3 {
+      font-size: 28px;
+
+      margin-bottom: 10px;
+    }
+
+    .server-box p {
+      color: #9296a2;
+
+      margin-bottom: 22px;
+    }
+
+    .server-ip-large {
+      font-family: monospace;
+
+      font-size: 20px;
+
+      color: #ffffff;
+
+      margin-bottom: 20px;
+    }
+
+    /* FOOTER */
+
     footer {
       text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid #20222b;
-      color: #686b75;
+
+      padding: 45px 20px;
+
+      border-top: 1px solid #20232c;
+
+      color: #686c76;
+
       font-size: 13px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 800px) {
-      nav .links {
+
+      .nav-links {
         display: none;
       }
 
@@ -215,9 +441,22 @@
         grid-template-columns: 1fr;
       }
 
-      .ip-box {
+      .ip-container {
         width: 100%;
+
         justify-content: space-between;
+      }
+
+      .ip {
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        letter-spacing: 5px;
+      }
+
+      section {
+        padding: 75px 6%;
       }
     }
   </style>
@@ -225,156 +464,345 @@
 
 <body>
 
-  <nav>
-    <div class="logo">VE<span>X</span> SMP</div>
+  <!-- NAVIGATION -->
 
-    <div class="links">
-      <a href="#home">Home</a>
-      <a href="#play">Play</a>
-      <a href="#rules">Rules</a>
-      <a href="#wiki">Wiki</a>
-      <a href="#store">Store</a>
+  <nav>
+
+    <div class="logo">
+      VE<span>X</span> SMP
     </div>
+
+    <div class="nav-links">
+
+      <a href="#home">Home</a>
+
+      <a href="#play">Play</a>
+
+      <a href="#about">About</a>
+
+      <a href="#rules">Rules</a>
+
+      <a href="#info">Server Info</a>
+
+    </div>
+
   </nav>
 
-  <main>
 
-    <div class="hero" id="home">
-      <div>
-        <div class="status">
-          <span class="dot"></span>
-          Server Online
-        </div>
+  <!-- HERO -->
 
-        <h1>VE<span>X</span></h1>
+  <div class="hero" id="home">
 
-        <p>
-          A modern Minecraft survival experience.
-          Build, fight, trade, explore, and make your mark on VEX SMP.
-        </p>
+    <div class="hero-content">
 
-        <div class="ip-box">
-          <span class="ip" id="serverIP">play.example.com</span>
-          <button onclick="copyIP()">Copy IP</button>
-        </div>
+      <div class="server-status">
+
+        <span class="status-dot"></span>
+
+        VEX SMP • Survival
+
       </div>
+
+      <h1>
+        VE<span>X</span>
+      </h1>
+
+      <h2>
+        Pure Survival. Your Story.
+      </h2>
+
+      <p>
+        Build your base, explore the world, trade with players,
+        fight for what you own, and create your own story on VEX SMP.
+      </p>
+
+      <div class="ip-container">
+
+        <span class="ip" id="serverIP">
+          0852741936.mcsh.io
+        </span>
+
+        <button class="copy-button" onclick="copyIP()">
+          Copy IP
+        </button>
+
+      </div>
+
     </div>
 
-    <section id="play">
-      <h2 class="section-title">Play VEX SMP</h2>
-      <p class="section-text">
-        Jump into the world and start your survival journey.
+  </div>
+
+
+  <!-- PLAY -->
+
+  <section id="play">
+
+    <div class="section-label">
+      Start Playing
+    </div>
+
+    <h2 class="section-title">
+      Join VEX SMP
+    </h2>
+
+    <p class="section-description">
+      Getting started is simple. Grab Minecraft, connect to the server,
+      and start your survival journey.
+    </p>
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">1</div>
+
+        <div>
+          <h3>Open Minecraft</h3>
+
+          <p>
+            Launch Minecraft and select Multiplayer.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="step">
+
+        <div class="step-number">2</div>
+
+        <div>
+          <h3>Add VEX SMP</h3>
+
+          <p>
+            Add the server using the IP below.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="step">
+
+        <div class="step-number">3</div>
+
+        <div>
+          <h3>Survive</h3>
+
+          <p>
+            Build, explore, trade, fight, and make your mark.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-label">
+      The Server
+    </div>
+
+    <h2 class="section-title">
+      What is VEX SMP?
+    </h2>
+
+    <p class="section-description">
+      VEX SMP is a survival Minecraft server focused on giving players
+      the freedom to build their own experience. No complicated custom
+      spawn system. No unnecessary clutter. Just survival Minecraft,
+      players, and a world to make your own.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="card-icon">🌎</div>
+
+        <h3>Explore</h3>
+
+        <p>
+          Travel across the world, find new places, and discover
+          resources for your next project.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <div class="card-icon">🏠</div>
+
+        <h3>Build</h3>
+
+        <p>
+          Create your own base, town, farms, shops, or anything
+          else you can imagine.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <div class="card-icon">⚔️</div>
+
+        <h3>Survive</h3>
+
+        <p>
+          Protect your builds, compete with other players,
+          and survive whatever happens.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RULES -->
+
+  <section id="rules">
+
+    <div class="section-label">
+      Play Fair
+    </div>
+
+    <h2 class="section-title">
+      Server Rules
+    </h2>
+
+    <p class="section-description">
+      Keep VEX SMP enjoyable for everyone.
+    </p>
+
+    <div class="rules">
+
+      <div class="rule">
+
+        <strong>Respect Other Players</strong>
+
+        <span>
+          Don't harass, threaten, or intentionally ruin another
+          player's experience.
+        </span>
+
+      </div>
+
+      <div class="rule">
+
+        <strong>No Cheating</strong>
+
+        <span>
+          Hacked clients, unfair exploits, and prohibited cheats
+          are not allowed.
+        </span>
+
+      </div>
+
+      <div class="rule">
+
+        <strong>No Unapproved Griefing</strong>
+
+        <span>
+          Don't destroy or damage another player's builds without
+          permission.
+        </span>
+
+      </div>
+
+      <div class="rule">
+
+        <strong>Don't Abuse Bugs</strong>
+
+        <span>
+          Report serious bugs instead of using them to gain an
+          unfair advantage.
+        </span>
+
+      </div>
+
+      <div class="rule">
+
+        <strong>Use Common Sense</strong>
+
+        <span>
+          If something obviously ruins the server for everyone else,
+          don't do it.
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVER INFO -->
+
+  <section id="info">
+
+    <div class="server-box">
+
+      <h3>
+        VEX SMP
+      </h3>
+
+      <p>
+        Pure survival Minecraft.
       </p>
 
-      <div class="cards">
-        <div class="card">
-          <h3>Java Edition</h3>
-          <p>Connect using the server IP through Minecraft Java Edition.</p>
-        </div>
-
-        <div class="card">
-          <h3>Bedrock Edition</h3>
-          <p>Bedrock support information and connection details will be listed here.</p>
-        </div>
-
-        <div class="card">
-          <h3>Version</h3>
-          <p>Paper 1.21.11</p>
-        </div>
+      <div class="server-ip-large">
+        0852741936.mcsh.io
       </div>
-    </section>
 
-    <section id="rules">
-      <h2 class="section-title">Server Rules</h2>
-      <p class="section-text">
-        Keep VEX SMP fun and fair for everyone.
-      </p>
+      <button class="copy-button" onclick="copyIP()">
+        Copy Server IP
+      </button>
 
-      <div class="rules">
-        <div class="rule">
-          <strong>Respect Players</strong>
-          <span>No harassment, discrimination, or unnecessary toxicity.</span>
-        </div>
+    </div>
 
-        <div class="rule">
-          <strong>No Cheating</strong>
-          <span>Hacked clients, unfair exploits, and prohibited modifications are not allowed.</span>
-        </div>
+  </section>
 
-        <div class="rule">
-          <strong>No Griefing</strong>
-          <span>Don't destroy or steal from other players without permission.</span>
-        </div>
 
-        <div class="rule">
-          <strong>Use Common Sense</strong>
-          <span>If something clearly ruins the experience for others, don't do it.</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="wiki">
-      <h2 class="section-title">VEX Wiki</h2>
-      <p class="section-text">
-        Everything you need to know about the server.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <h3>Getting Started</h3>
-          <p>Learn how to join, survive, build your base, and get established.</p>
-        </div>
-
-        <div class="card">
-          <h3>Commands</h3>
-          <p>Useful commands and server features.</p>
-        </div>
-
-        <div class="card">
-          <h3>Economy</h3>
-          <p>Learn how trading, shops, money, and the server economy work.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="store">
-      <h2 class="section-title">Store</h2>
-      <p class="section-text">
-        Support VEX SMP and unlock optional perks.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <h3>Ranks</h3>
-          <p>View available server ranks and perks.</p>
-        </div>
-
-        <div class="card">
-          <h3>Crates</h3>
-          <p>Browse available crate keys and rewards.</p>
-        </div>
-
-        <div class="card">
-          <h3>Coming Soon</h3>
-          <p>The VEX SMP store is currently being prepared.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
+  <!-- FOOTER -->
 
   <footer>
-    © 2026 VEX SMP. Not affiliated with Mojang or Microsoft.
+
+    © 2026 VEX SMP
+
+    <br>
+
+    A community Minecraft survival server.
+
+    <br><br>
+
+    Not affiliated with Mojang or Microsoft.
+
   </footer>
 
+
+  <!-- JAVASCRIPT -->
+
   <script>
+
     function copyIP() {
-      const ip = document.getElementById("serverIP").textContent;
+
+      const ip =
+        document.getElementById("serverIP").textContent.trim();
 
       navigator.clipboard.writeText(ip).then(() => {
-        alert("Server IP copied!");
+
+        alert("VEX SMP IP copied!");
+
       });
+
     }
+
   </script>
 
 </body>
