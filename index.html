@@ -1,950 +1,316 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VEX SMP | Pure Survival</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09090b">
+<title>SOVEREIGN | Lifesteal SMP</title>
+<meta name="description" content="SOVEREIGN Minecraft Lifesteal SMP. Join the server.">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    html {
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #08090d;
-      color: #ffffff;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(8, 9, 13, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #ffffff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: #a9a9b2;
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.25s;
-      cursor: pointer;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .discord-nav {
-      padding: 9px 15px;
-      border-radius: 8px;
-      background: #5865f2;
-      color: #ffffff !important;
-    }
-
-    .discord-nav:hover {
-      background: #6975ff;
-      transform: translateY(-1px);
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 120px 20px 80px;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.18), transparent 40%),
-        radial-gradient(circle at 50% 70%, rgba(56, 189, 248, 0.08), transparent 45%),
-        #08090d;
-    }
-
-    .hero-content {
-      max-width: 850px;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 7px 14px;
-      border: 1px solid rgba(139, 92, 246, 0.35);
-      background: rgba(139, 92, 246, 0.08);
-      color: #b99cff;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(55px, 10vw, 110px);
-      font-weight: 950;
-      letter-spacing: -5px;
-      line-height: 0.95;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, #ffffff, #9f7aea, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      color: #a7a7b0;
-      font-size: 19px;
-      max-width: 650px;
-      margin: 0 auto 35px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 13px 21px;
-      border-radius: 9px;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.25s;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: #ffffff;
-      color: #08090d;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #e7e7e7;
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.04);
-      color: #ffffff;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
-      transform: translateY(-2px);
-    }
-
-    /* GENERAL */
-    section {
-      padding: 100px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 55px;
-    }
-
-    .section-title h2 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #85858e;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    /* SERVER IP */
-    .server-box {
-      max-width: 850px;
-      margin: auto;
-      padding: 25px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 15px;
-      background: rgba(255,255,255,0.025);
-      text-align: center;
-    }
-
-    .server-label {
-      color: #85858e;
-      font-size: 13px;
-      margin-bottom: 7px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .server-ip {
-      font-size: 25px;
-      font-weight: 800;
-      margin-bottom: 18px;
-      word-break: break-all;
-    }
-
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .card {
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 15px;
-      background: rgba(255,255,255,0.025);
-      transition: 0.25s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(139, 92, 246, 0.35);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .card-number {
-      color: #8b5cf6;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .card h3 {
-      font-size: 21px;
-      margin-bottom: 9px;
-    }
-
-    .card p {
-      color: #8e8e98;
-      font-size: 14px;
-    }
-
-    /* PLAY */
-    .steps {
-      max-width: 850px;
-      margin: auto;
-      display: grid;
-      gap: 14px;
-    }
-
-    .step {
-      display: flex;
-      gap: 20px;
-      padding: 22px;
-      border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.025);
-    }
-
-    .step-num {
-      min-width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9px;
-      background: rgba(139, 92, 246, 0.15);
-      color: #b99cff;
-      font-weight: 800;
-    }
-
-    .step h3 {
-      margin-bottom: 4px;
-    }
-
-    .step p {
-      color: #898992;
-      font-size: 14px;
-    }
-
-    /* RULES */
-    .rules {
-      max-width: 900px;
-      margin: auto;
-      display: grid;
-      gap: 12px;
-    }
-
-    .rule {
-      padding: 19px 22px;
-      border-radius: 11px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .rule strong {
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    .rule span {
-      color: #888891;
-      font-size: 14px;
-    }
-
-    /* INFO */
-    .info-grid {
-      max-width: 1000px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .info-item {
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 13px;
-      background: rgba(255,255,255,0.025);
-    }
-
-    .info-item small {
-      display: block;
-      color: #777781;
-      margin-bottom: 5px;
-    }
-
-    .info-item strong {
-      font-size: 17px;
-    }
-
-    /* DISCORD */
-    .discord-box {
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-      padding: 45px 25px;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at center, rgba(88,101,242,0.14), transparent 65%),
-        rgba(255,255,255,0.025);
-      border: 1px solid rgba(88,101,242,0.2);
-    }
-
-    .discord-box h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .discord-box p {
-      color: #898992;
-      margin-bottom: 23px;
-    }
-
-    .discord-button {
-      display: inline-block;
-      background: #5865f2;
-      color: #ffffff;
-      padding: 13px 22px;
-      border-radius: 9px;
-      font-weight: 800;
-      transition: 0.25s;
-    }
-
-    .discord-button:hover {
-      background: #6975ff;
-      transform: translateY(-2px);
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 35px 7%;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: #666670;
-      font-size: 13px;
-    }
-
-    /* MOBILE */
-    @media (max-width: 800px) {
-      nav {
-        padding: 15px 5%;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
-      .nav-links a {
-        font-size: 12px;
-      }
-
-      .nav-links a:not(.discord-nav) {
-        display: none;
-      }
-
-      .hero h1 {
-        letter-spacing: -3px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-    }
-  </style>
+<style>
+:root {
+  --bg:#09090b;
+  --panel:#111114;
+  --red:#b91c2c;
+  --bright:#ef3347;
+  --text:#f4f4f5;
+  --muted:#a1a1aa;
+  --line:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.55;
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+.topline{height:3px;background:linear-gradient(90deg,transparent,var(--bright),transparent)}
+header{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(16px);
+  background:rgba(9,9,11,.88);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.13em}
+.brand-mark{
+  width:34px;height:34px;display:grid;place-items:center;
+  border:1px solid rgba(239,51,71,.45);
+  background:rgba(185,28,44,.15);color:#ff5969;font-weight:900;
+}
+.navlinks{display:flex;align-items:center;gap:27px;color:#c4c4cb;font-size:13px}
+.navlinks a:hover{color:white}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:1px solid rgba(239,51,71,.55);background:var(--red);
+  color:white;border-radius:7px;padding:11px 17px;
+  font-weight:750;font-size:13px;transition:.18s;cursor:pointer;
+}
+.button:hover{transform:translateY(-2px);background:#d32338}
+.secondary{background:rgba(255,255,255,.04);border-color:var(--line)}
+.menu-btn{display:none;background:transparent;color:white;border:1px solid var(--line);border-radius:7px;padding:8px 11px}
+.hero{
+  min-height:650px;display:grid;align-items:center;
+  position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+  radial-gradient(ellipse at 75% 38%,rgba(155,20,37,.22),transparent 35%),
+  radial-gradient(ellipse at 15% 85%,rgba(95,15,28,.16),transparent 32%),
+  linear-gradient(135deg,#0a0a0d,#101014 55%,#0a090c);
+}
+.hero:before{
+  content:"";position:absolute;inset:0;opacity:.18;
+  background-image:
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.hero-inner{position:relative;padding:105px 0 115px;max-width:760px}
+.eyebrow{color:#ff7180;font-size:11px;font-weight:850;letter-spacing:.22em;text-transform:uppercase}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--bright);margin-right:9px}
+h1{margin:22px 0 12px;font-size:clamp(54px,10vw,104px);line-height:.94;letter-spacing:-.075em;font-weight:950}
+h1 span{color:#e52b40}
+.hero p{color:#b6b6bf;font-size:18px;max-width:540px;margin:24px 0 30px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.server-chip{
+  display:inline-flex;align-items:center;gap:10px;margin-top:48px;
+  padding:10px 13px;border:1px solid var(--line);
+  background:rgba(0,0,0,.28);border-radius:8px;color:#d4d4d8;font-size:12px;
+}
+.server-chip small{color:#8c8c96;text-transform:uppercase;letter-spacing:.12em;font-size:9px;display:block}
+.copy{border:0;background:transparent;color:#ff7b89;cursor:pointer;padding:3px 5px;font-size:11px;font-weight:800}
+.section{padding:88px 0}
+.section-head{max-width:650px;margin-bottom:35px}
+.kicker{color:#ef5363;font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+h2{margin:9px 0 10px;font-size:clamp(30px,5vw,46px);letter-spacing:-.05em;line-height:1.05}
+.section-head p{margin:0;color:var(--muted);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{
+  padding:24px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  border:1px solid var(--line);border-radius:11px;
+}
+.num{color:#ed5363;font-size:11px;font-weight:900;letter-spacing:.16em}
+.card h3{margin:13px 0 7px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.join-panel{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;
+  padding:34px;background:linear-gradient(120deg,rgba(135,17,34,.2),rgba(255,255,255,.025));
+  border:1px solid rgba(239,51,71,.23);border-radius:14px;
+}
+.join-panel p{color:#b0b0ba;margin:0}
+.ipbox{background:rgba(0,0,0,.35);border:1px solid var(--line);padding:18px;border-radius:9px}
+.ipbox small{color:#9999a3;display:block;text-transform:uppercase;font-size:9px;letter-spacing:.18em;margin-bottom:7px}
+.ipline{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:800;font-size:16px}
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.rule{display:flex;gap:13px;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:9px}
+.rule b{color:#f05a69;font-size:12px}
+.rule span{color:#d0d0d7;font-size:13px}
+.discord{
+  text-align:center;padding:65px 25px;border:1px solid var(--line);
+  border-radius:14px;background:radial-gradient(ellipse at 50% 0%,rgba(185,28,44,.16),transparent 60%),var(--panel);
+}
+.discord p{color:var(--muted);max-width:470px;margin:0 auto 22px}
+footer{border-top:1px solid var(--line);padding:24px 0;color:#777780;font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.footer-brand{color:#ddd;font-weight:900;letter-spacing:.14em}
+.toast{
+  position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;background:#202026;border:1px solid var(--line);
+  padding:10px 15px;border-radius:8px;color:white;font-size:12px;transition:.2s;z-index:50;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){
+  .nav{height:64px}
+  .menu-btn{display:inline-block}
+  .navlinks{
+    display:none;position:absolute;left:0;right:0;top:64px;padding:18px 22px 22px;
+    background:#0c0c10;border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:flex-start;gap:17px;
+  }
+  .navlinks.open{display:flex}
+  .nav-cta{display:none}
+  .hero{min-height:590px}
+  .hero-inner{padding:85px 0}
+  .grid,.join-panel,.rules{grid-template-columns:1fr}
+  .section{padding:65px 0}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
 </head>
 
 <body>
+<div class="topline"></div>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#home" class="logo">VEX SMP</a>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark">S</span>
+      <span>SOVEREIGN</span>
+    </a>
 
-    <div class="nav-links">
-
-      <!-- CLICKABLE SECTIONS -->
-      <a href="#home">Home</a>
-      <a href="#play">Play</a>
+    <nav class="navlinks" id="navlinks">
       <a href="#about">About</a>
+      <a href="#join">How to join</a>
       <a href="#rules">Rules</a>
-      <a href="#info">Server Info</a>
+      <a href="#community">Community</a>
+    </nav>
 
-      <!-- DISCORD APPLICATION -->
-      <a
-        href="https://discord.gg/KfhEBGHbpr"
-        target="_blank"
-        class="discord-nav"
-      >
-        Apply • Discord
-      </a>
+    <a class="button nav-cta" href="https://discord.gg/KfhEBGHbpr" target="_blank">Discord ↗</a>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</header>
 
-    </div>
-  </nav>
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow"><span class="dot"></span>Minecraft Lifesteal SMP</div>
+      <h1>SOVE<span>REIGN</span></h1>
+      <p>A Lifesteal survival server. Fight, build, make alliances, and protect your hearts.</p>
 
-
-  <!-- HOME -->
-  <section class="hero" id="home">
-
-    <div class="hero-content">
-
-      <div class="tag">PURE SURVIVAL SMP</div>
-
-      <h1>
-        <span>VEX</span> SMP
-      </h1>
-
-      <p>
-        Pure survival. Your story.
-        Build, explore, fight, trade, and survive
-        alongside other players.
-      </p>
-
-      <div class="buttons">
-
-        <a href="#play" class="btn btn-primary">
-          How to Play
-        </a>
-
-        <a
-          href="https://discord.gg/KfhEBGHbpr"
-          target="_blank"
-          class="btn btn-secondary"
-        >
-          Join Discord
-        </a>
-
+      <div class="actions">
+        <a class="button" href="#join">How to join →</a>
+        <a class="button secondary" href="https://discord.gg/KfhEBGHbpr" target="_blank">Join Discord</a>
       </div>
 
+      <div class="server-chip">
+        <span>
+          <small>Java server address</small>
+          <strong>sovereign.minehost.gg</strong>
+        </span>
+        <button class="copy" data-copy="sovereign.minehost.gg">COPY IP</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The server</div>
+      <h2>Survival with something at stake.</h2>
+      <p>SOVEREIGN is built around classic Minecraft survival with Lifesteal at its core.</p>
     </div>
 
-  </section>
-
-
-  <!-- SERVER IP -->
-  <section>
-
-    <div class="section-title">
-      <h2>Join VEX SMP</h2>
-      <p>
-        Jump into the world and start your survival journey.
-      </p>
+    <div class="grid">
+      <article class="card">
+        <div class="num">01 / LIFESTEAL</div>
+        <h3>Hearts matter</h3>
+        <p>Player-versus-player fights have consequences. Winning and losing can change your survival.</p>
+      </article>
+      <article class="card">
+        <div class="num">02 / SURVIVAL</div>
+        <h3>Make your mark</h3>
+        <p>Build a base, explore, gear up, and create your own path.</p>
+      </article>
+      <article class="card">
+        <div class="num">03 / COMMUNITY</div>
+        <h3>Play your way</h3>
+        <p>Team up, make rivalries, or go solo. Find your place in SOVEREIGN.</p>
+      </article>
     </div>
+  </div>
+</section>
 
-    <div class="server-box">
-
-      <div class="server-label">
-        Server Address
+<section class="section" id="join">
+  <div class="wrap">
+    <div class="join-panel">
+      <div>
+        <div class="kicker">Get connected</div>
+        <h2>Join SOVEREIGN.</h2>
+        <p>Open Minecraft Java Edition, go to Multiplayer, choose Add Server, and enter the address. Use Discord for updates and help.</p>
       </div>
 
-      <div class="server-ip" id="serverIP">
-        0852741936.mcsh.io
+      <div class="ipbox">
+        <small>Server address · Java</small>
+        <div class="ipline">
+          <span>sovereign.minehost.gg</span>
+          <button class="copy" data-copy="sovereign.minehost.gg">COPY</button>
+        </div>
+        <div style="height:1px;background:var(--line);margin:16px 0"></div>
+        <a class="button" style="width:100%" href="https://discord.gg/KfhEBGHbpr" target="_blank">Open Discord ↗</a>
       </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="copyIP()"
-      >
-        Copy IP
-      </button>
-
     </div>
+  </div>
+</section>
 
-  </section>
-
-
-  <!-- ABOUT -->
-  <section id="about">
-
-    <div class="section-title">
-
-      <h2>Survive Your Way</h2>
-
-      <p>
-        VEX SMP keeps things simple. No complicated systems.
-        Just Minecraft survival with other players.
-      </p>
-
+<section class="section" id="rules">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Keep it fair</div>
+      <h2>Server rules.</h2>
+      <p>Play competitively, but keep the server enjoyable for everyone.</p>
     </div>
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="card-number">
-          01
-        </div>
-
-        <h3>
-          Explore
-        </h3>
-
-        <p>
-          Travel across the world, discover new places,
-          and find resources for your next adventure.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-number">
-          02
-        </div>
-
-        <h3>
-          Build
-        </h3>
-
-        <p>
-          Create your base, build with friends,
-          or make your own place in the world.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-number">
-          03
-        </div>
-
-        <h3>
-          Survive
-        </h3>
-
-        <p>
-          Gather resources, protect your stuff,
-          and make your own path through the SMP.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PLAY -->
-  <section id="play">
-
-    <div class="section-title">
-
-      <h2>
-        How To Play
-      </h2>
-
-      <p>
-        Getting started takes less than a minute.
-      </p>
-
-    </div>
-
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="step-num">
-          1
-        </div>
-
-        <div>
-
-          <h3>
-            Open Minecraft
-          </h3>
-
-          <p>
-            Launch Minecraft and select Multiplayer.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-num">
-          2
-        </div>
-
-        <div>
-
-          <h3>
-            Add The Server
-          </h3>
-
-          <p>
-            Add <strong>0852741936.mcsh.io</strong>
-            as the server address.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-num">
-          3
-        </div>
-
-        <div>
-
-          <h3>
-            Join VEX SMP
-          </h3>
-
-          <p>
-            Connect and start your survival adventure.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- RULES -->
-  <section id="rules">
-
-    <div class="section-title">
-
-      <h2>
-        Server Rules
-      </h2>
-
-      <p>
-        Keep VEX SMP fun and fair for everyone.
-      </p>
-
-    </div>
-
 
     <div class="rules">
-
-      <div class="rule">
-
-        <strong>
-          1. Respect Players
-        </strong>
-
-        <span>
-          Don't harass, threaten, or intentionally ruin
-          another player's experience.
-        </span>
-
-      </div>
-
-
-      <div class="rule">
-
-        <strong>
-          2. No Cheating
-        </strong>
-
-        <span>
-          Hacks, unfair clients, exploits, and cheats
-          are not allowed.
-        </span>
-
-      </div>
-
-
-      <div class="rule">
-
-        <strong>
-          3. No Griefing
-        </strong>
-
-        <span>
-          Don't destroy or modify another player's builds
-          without permission.
-        </span>
-
-      </div>
-
-
-      <div class="rule">
-
-        <strong>
-          4. No Exploits
-        </strong>
-
-        <span>
-          Don't abuse server bugs or glitches for an
-          unfair advantage.
-        </span>
-
-      </div>
-
-
-      <div class="rule">
-
-        <strong>
-          5. Use Common Sense
-        </strong>
-
-        <span>
-          If something clearly damages the server or its
-          community, don't do it.
-        </span>
-
-      </div>
-
+      <div class="rule"><b>01</b><span>No hacked clients, cheats, or unfair exploits.</span></div>
+      <div class="rule"><b>02</b><span>No harassment, hate speech, or threats.</span></div>
+      <div class="rule"><b>03</b><span>Do not exploit bugs. Report them to staff.</span></div>
+      <div class="rule"><b>04</b><span>Respect staff decisions and keep disputes civil.</span></div>
+      <div class="rule"><b>05</b><span>No spam or advertising other servers.</span></div>
+      <div class="rule"><b>06</b><span>No alternate accounts to evade punishments.</span></div>
     </div>
+  </div>
+</section>
 
-  </section>
-
-
-  <!-- SERVER INFO -->
-  <section id="info">
-
-    <div class="section-title">
-
-      <h2>
-        Server Info
-      </h2>
-
-      <p>
-        Everything you need before joining.
-      </p>
-
+<section class="section" id="community">
+  <div class="wrap">
+    <div class="discord">
+      <div class="kicker">Stay connected</div>
+      <h2>Join the community.</h2>
+      <p>Get server updates, talk with other players, and keep up with what's happening in SOVEREIGN.</p>
+      <a class="button" href="https://discord.gg/KfhEBGHbpr" target="_blank">Join SOVEREIGN Discord ↗</a>
     </div>
+  </div>
+</section>
+</main>
 
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">SOVEREIGN</div>
+    <div>Minecraft is a trademark of Microsoft/Mojang. SOVEREIGN is independent.</div>
+    <div>© <span id="year"></span> SOVEREIGN</div>
+  </div>
+</footer>
 
-    <div class="info-grid">
+<div class="toast" id="toast">Copied server address</div>
 
-      <div class="info-item">
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const navlinks=document.getElementById('navlinks');
 
-        <small>
-          Server Name
-        </small>
+menuBtn.addEventListener('click',()=>{
+  navlinks.classList.toggle('open');
+});
 
-        <strong>
-          VEX SMP
-        </strong>
+navlinks.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click',()=>navlinks.classList.remove('open'));
+});
 
-      </div>
+const toast=document.getElementById('toast');
+let toastTimer;
 
-
-      <div class="info-item">
-
-        <small>
-          Server Address
-        </small>
-
-        <strong>
-          0852741936.mcsh.io
-        </strong>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <small>
-          Server Type
-        </small>
-
-        <strong>
-          Pure Survival SMP
-        </strong>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <small>
-          Platform
-        </small>
-
-        <strong>
-          Minecraft Java
-        </strong>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <small>
-          Software
-        </small>
-
-        <strong>
-          Fabric
-        </strong>
-
-      </div>
-
-
-      <div class="info-item">
-
-        <small>
-          Version
-        </small>
-
-        <strong>
-          1.21.11
-        </strong>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- DISCORD -->
-  <section id="discord">
-
-    <div class="discord-box">
-
-      <h2>
-        Join The Community
-      </h2>
-
-      <p>
-        Apply to join VEX SMP and stay connected
-        with the community.
-      </p>
-
-      <a
-        href="https://discord.gg/KfhEBGHbpr"
-        target="_blank"
-        class="discord-button"
-      >
-        Apply • Discord
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    © 2026 VEX SMP. All rights reserved.
-
-  </footer>
-
-
-  <script>
-
-    function copyIP() {
-
-      const ip = "0852741936.mcsh.io";
-
-      navigator.clipboard.writeText(ip).then(() => {
-
-        const button =
-          document.querySelector(".server-box button");
-
-        const oldText =
-          button.innerText;
-
-        button.innerText =
-          "Copied!";
-
-        setTimeout(() => {
-
-          button.innerText =
-            oldText;
-
-        }, 1500);
-
-      });
-
+document.querySelectorAll('[data-copy]').forEach(button=>{
+  button.addEventListener('click',async()=>{
+    const value=button.dataset.copy;
+    try{
+      await navigator.clipboard.writeText(value);
+      toast.textContent='Copied server address';
+    }catch{
+      toast.textContent=value;
     }
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),1800);
+  });
+});
 
-  </script>
-
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
